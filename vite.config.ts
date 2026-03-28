@@ -15,7 +15,13 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url))
     },
   },
-  server:{
+  server: {
     port: 3001,
+    proxy: { // ủy quyền cho server chay ở cổng 3000 khi gọi API
+      "/api": {
+        target: "http://localhost:3000/",
+        changeOrigin: true,
+      },
+    }
   },
 });
