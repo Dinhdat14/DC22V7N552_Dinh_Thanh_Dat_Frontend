@@ -93,17 +93,14 @@ export default {
         deleteContact() {
             this.$emit("delete:contact", this.contactLocal.id);
         },
-Cancel() {
-    const reply = window.confirm('You have unsaved changes! Do you want to leave?');
-    if (!reply) {
-                // stay on the page if
-                // user clicks 'Cancel'
-                return false
+        Cancel() {
+            const reply = window.confirm('You have unsaved changes! Do you want to leave?');
+            if (reply) {
+                this.$router.push({ name: "contactbook" });
             }
-            else this.$router.push({ name: "contactbook" });
-        }
-    },
-};
+        }, // Đóng hàm Cancel
+    }, // Đóng methods
+}; // Đóng export default
 </script>
 <style scoped>
 @import "@/assets/form.css";
