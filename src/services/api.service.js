@@ -6,8 +6,21 @@ const commonConfig = {
     },
 };
 export default (baseURL) => {
-    return axios.create({
-        baseURL,
-        ...commonConfig,
+    const instance = axios.create({
+        baseURL, // "/api/contacts"
+        headers: {
+            "Content-Type": "application/json",
+        },
     });
+
+    // TỰ ĐỘNG GẮN TOKEN
+    instance.interceptors.request.use((config) => {
+        const token = localStorage.getItem("userToken");
+        if (token) {
+            config.headers.Authorization = `Bearer ${token}`;
+        }
+        return config;
+    });
+
+    return instance;
 };

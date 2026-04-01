@@ -1,5 +1,6 @@
 <script>
 import AppHeader from "@/components/AppHeader.vue";
+// app.use("/api/auth", require("./routes/auth.routes"));
 export default {
     components: {
         AppHeader,

@@ -18,9 +18,12 @@
                 <button class="btn btn-sm btn-success" @click="goToAddContact">
                     <i class="fas fa-plus"></i> Thêm mới
                 </button>
-                   <button class="btn btn-sm btn-danger" @click="removeAllContacts">
-                        <i class="fas fa-trash"></i> Xóa tất cả
-                    </button>
+                <button class="btn btn-sm btn-danger" @click="removeAllContacts">
+                    <i class="fas fa-trash"></i> Xóa tất cả
+                </button>
+                <button class="btn btn-sm btn-secondary" @click="handleLogout">
+                    <i class="fas fa-sign-out-alt"></i> Đăng xuất 
+                </button>
             </div>
         </div>
         <div class="mt-3 col-md-6">
@@ -117,6 +120,17 @@ export default {
         goToAddContact() {
             this.$router.push({ name: "contact.add" });
         },
+        handleLogout() {
+            // 1. Xóa token khỏi localStorage để hủy trạng thái đăng nhập
+            localStorage.removeItem("userToken");
+
+            // 2. Thông báo cho người dùng (tùy chọn)
+            alert("Bạn đã đăng xuất thành công.");
+
+            // 3. Chuyển hướng về trang đăng nhập
+            this.$router.push({ name: "login" });
+        },
+
     },
     mounted() {
         this.refreshList();
